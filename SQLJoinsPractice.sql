@@ -29,6 +29,31 @@ right join Person.ContactType CT
 on BEC.ContactTypeID=CT.ContactTypeID
 group by Name, CT.ContactTypeID
 having COUNT(BEC.ContactTypeID)>=100
+--A23
+select CAST(RateChangeDate as VARCHAR(10)) as FromDate,
+	   CONCAT(LastName, FirstName, MiddleName) full_name 
+	   , (40 * EPH.Rate) AS SalaryInAWeek
+	from HumanResources.EmployeePayHistory EPH
+		join Person.Person P
+			on EPH.BusinessEntityID=P.BusinessEntityID;
+
+--A24
+select CAST(RateChangeDate as VARCHAR(11)) as FromDate,
+	   CONCAT(LastName, FirstName, MiddleName) full_name,
+	   (40 * EPH.Rate) AS SalaryInAWeek
+		from HumanResources.EmployeePayHistory EPH
+		join Person.Person P
+			on EPH.BusinessEntityID=P.BusinessEntityID
+		where EPH.RateChangeDate = (SELECT MAX(RateChangeDate)
+		FROM HumanResources.EmployeePayHistory 
+                where BusinessEntityID = EPH.BusinessEntityID)
+		order by full_name
+
+
+
+
+
+
 
 
 
