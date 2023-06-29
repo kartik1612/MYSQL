@@ -49,8 +49,10 @@ select CAST(RateChangeDate as VARCHAR(11)) as FromDate,
                 where BusinessEntityID = EPH.BusinessEntityID)
 		order by full_name
 
-
-
+select YEAR(OrderDate) as Year, sum(TotalDue)
+from sales.SalesOrderHeader
+group by YEAR(OrderDate)
+order by Year
 
 
 
