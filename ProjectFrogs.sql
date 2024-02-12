@@ -30,3 +30,7 @@ group by Primary_Color
 having count(Primary_Color) < 6
 order by COUNT(primary_color) desc
 
+select min(S_No) S_No,  Species, COUNT(S_No) Count from PocketFrogs
+group by Species
+order by S_No
+
