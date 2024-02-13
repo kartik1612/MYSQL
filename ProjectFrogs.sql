@@ -32,5 +32,5 @@ order by COUNT(primary_color) desc
 
 select min(S_No) S_No,  Species, COUNT(S_No) Count from PocketFrogs
 group by Species
-order by S_No
+order by Count desc, S_No
 
